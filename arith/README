@@ -1,0 +1,87 @@
+HW04: Arith
+Authors: Mishona Horton and Perucy Mussiba
+Date: 20th October 2024
+
+Files:
+  40image.c:
+        This file implements command line arguments processing and contains
+        the main function of the program
+  Makefile:
+        This file contains compillation instructions for the program
+  ppmdiff.c:
+        This file implements a program that determines the difference
+        between two PPM images.
+  bitpack.c:
+        This file implements bitpacking operations such as field extraction,
+        update and width test functions.
+  rgb_to_video.c:
+        This file implements conversion from RGB pixels of a PPM image to the
+        component video color space pixels and vice versa. The file has 
+        functions that does each step of compression and decompression. The 
+        functions utilize the a2methods, and a2plain (map functions) suite
+        for UArray2 operations and mapping.
+        The functions incorporate conversion relations from the spec for
+        conversion of the pixels and ensures that the values are in the 
+        required range for compression and decompression to work.
+
+  videocs_to_word.c:
+        This file implements conversion from component video color space 
+        pixels to packed 32-bit words and vice versa. The file contains  
+        functions that do each step of compression and decompression  
+        between component video color space and packed 32-bit words. 
+        The functions utilize the a2methods and a2plain suites for UArray2
+        operations and mapping. The functions also use Bitpack functions to
+        pack and unpack the 32-bit words. The functions incorperate conversion
+        relations from the spec for component color space to packed 32-bit
+        word and vice versa. The functions use these conversion relations to
+        ensure that the calculated are within the required range for 
+        compression and decompression to function properly.
+
+  imageprocessor.c:
+        This file implements input reading and output display of the program.
+        For an input PPM image, the file contains a function that reads the 
+        image and trims it if necessary hence returning a trimmed or untrimmed
+        image based on the specified conditions in the function.
+        
+        Also, for an input file of a compressed binary image, the file contains
+        an implementation to read the file and initialize a UArray_2 to store
+        the bitwords from the file as specified in the spec.
+        
+        Lastly, the file contains a function that prints a compressed binary 
+        image to standard output for viewing as indicated in the specification.
+    
+  compress40.c:
+        This file implements the image compression or decompression steps
+        depending on what is entered on the command line. 
+        Compression: This file calls functions imageprocessor.c to process the 
+        given ppm image and trim if needed before compression. This file also 
+        calls functions from rgb_to_video.c and videocs_to_word.c to implement 
+        compression steps and print the correct output.
+        Decompression: This file calls functions imageprocessor.c to process 
+        the given compressed binary image. This file also calls functions from 
+        rgb_to_video.c and videocs_to_word.c to implement decompression steps 
+        and print the correct output.
+
+  a2plain.c:
+        This file was given to us when the source code was pulled, handles the
+        mapping functions for the UArray_2.
+
+  uarray2.c:
+        This file contains implementation of UArray_2. We used the 
+        implementation provided in the previous homework solutions.
+  
+  Correctly Implemented:
+        We belive that we have correctly implemented all aspects of the
+        assignment. We are a bit unsure about the bitpacking functions, 
+        conversion of floats to ints (and viceversa) and
+        reading or printing of bitwords. Nevertheless, our implementation
+        works
+
+  Hours analyzing problems: 20 hours
+
+  Hours solving problems: 20 hours
+
+  Acknowledgement:
+    References: Geekforgeeks for elaborate explanations on endianness
+              and data types sizes, CS40 Lecture notes and Stack overflow
+    TAs: We acknowledge the help of TAs during code debugging
